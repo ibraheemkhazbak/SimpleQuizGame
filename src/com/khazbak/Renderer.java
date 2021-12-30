@@ -29,6 +29,6 @@ public class Renderer {
     }
 
     public static void renderResult(Player player) {
-        System.out.println(player.getQuestionsGotRight() / player.getQuestions().size());
+        System.out.println((int)(player.getQuestionsGotRight()*100 / player.getQuestions().size())+"%");
     }
 }

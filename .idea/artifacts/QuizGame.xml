@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="QuizGame">
+  <artifact type="jar" build-on-make="true" name="QuizGame">
     <output-path>$PROJECT_DIR$/out/artifacts/QuizGame</output-path>
     <root id="archive" name="QuizGame.jar">
-      <element id="module-output" name="FirstProject" />
+      <element id="module-output" name="QuizGame" />
     </root>
   </artifact>
 </component>

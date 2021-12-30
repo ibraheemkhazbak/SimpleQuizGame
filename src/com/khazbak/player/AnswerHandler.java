@@ -9,8 +9,7 @@ public class AnswerHandler {
         int answer = -1;
         while (player.getLives() > 0) {
             try {
-                answer = scan.nextInt();
-                scan.nextLine();
+                answer=getAnswer();
                 if (player.getCurrentQuestion().isAnswerCorrect(answer)) {
                     return true;
                 }
@@ -18,9 +17,15 @@ public class AnswerHandler {
                 scan.nextLine();
             }
             player.loseLife();
-            System.out.println("You have "+player.getLives()+" lives");
+            System.out.println("You have "+player.getLivesToString());
 
         }
         return false;
+    }
+    public int  getAnswer(){
+        int answer;
+        answer = scan.nextInt();
+        scan.nextLine();
+        return answer;
     }
 }

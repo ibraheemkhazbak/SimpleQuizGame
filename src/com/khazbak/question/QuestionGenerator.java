@@ -6,10 +6,13 @@ import java.util.Random;
 public class QuestionGenerator {
     int amountOfQuestions;
     public static final char[] operators = {'+', '-'};
+    private List<Question> questions;
 
     public QuestionGenerator(int amountOfQuestions, List<Question> questions) {
         this.amountOfQuestions = amountOfQuestions;
-
+        this.questions=questions;
+    }
+    public void generateAllQuestions(){
         for (int i = 0; i < amountOfQuestions; i++) {
             generateRandomQuestion(i + 1, questions);
         }

@@ -12,7 +12,7 @@ public class Player {
     private QuestionGenerator generator;
     private int lives, maxLives;
     private int currentQuestionIndex = 0;
-    private int questionsGotRight, questionsGotWrong;
+    private double questionsGotRight, questionsGotWrong;
     private AnswerHandler answerHandler;
 
     public Player(String name, int maxLives, int numberOfQuestions) {
@@ -22,8 +22,9 @@ public class Player {
 
         lives = maxLives;
         answerHandler = new AnswerHandler();
-        questions = new ArrayList<>();
+        questions = new ArrayList<>(numberOfQuestions);
         generator = new QuestionGenerator(numberOfQuestions, questions);
+        generator.generateAllQuestions();
     }
 
 
@@ -34,22 +35,26 @@ public class Player {
     public Question getCurrentQuestion() {
         return questions.get(currentQuestionIndex);
     }
+    public void ask(){
+        Renderer.renderQuestion(this);
+        if (answerHandler.getAnswer(this)) {
+            questionsGotRight++;
+        } else {
+            questionsGotWrong++;
+        }
 
-    public void ask() {
+        lives = maxLives;
+    }
+
+    public void askAllQuestions() {
 
         int length = questions.size();
         while (currentQuestionIndex < length) {
-            Renderer.renderQuestion(this);
-            if (answerHandler.getAnswer(this)) {
-                questionsGotRight++;
-            } else {
-                questionsGotWrong++;
-            }
-            currentQuestionIndex++;
+             ask();
             if (currentQuestionIndex != length) {
                 System.out.println("Moving on to the next question");
+                currentQuestionIndex++;
             }
-            lives = maxLives;
         }
         if (questionsGotRight / length < 0.5) {
             Renderer.renderFailScreen(this);
@@ -57,18 +62,15 @@ public class Player {
             Renderer.renderWinScreen(this);
         }
 
+
     }
 
     public ArrayList<Question> getQuestions() {
         return questions;
     }
 
-    public int getQuestionsGotRight() {
+    public double getQuestionsGotRight() {
         return questionsGotRight;
-    }
-
-    public int getQuestionsGotWrong() {
-        return questionsGotWrong;
     }
 
     public String getName() {
@@ -79,4 +81,15 @@ public class Player {
         return lives;
     }
 
+    public String getLivesToString() {
+        String livesString = String.valueOf(lives);
+    if(lives>1){
+        livesString +=" lives";
+    }else if(lives==1){
+        livesString += " life";
+    }else if(lives==0){
+        livesString +=" lives and you lost a point";
+    }
+    return livesString;
+    }
 }
