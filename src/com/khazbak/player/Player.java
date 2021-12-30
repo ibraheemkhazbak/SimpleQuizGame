@@ -84,7 +84,8 @@ public class Player {
     public String getLivesToString() {
         String livesString = String.valueOf(lives);
     if(lives>1){
-        livesString +=" lives";
+        livesString += " lives";
+
     }else if(lives==1){
         livesString += " life";
     }else if(lives==0){

@@ -16,8 +16,8 @@ public class AnswerHandler {
             } catch (Exception e) {
                 scan.nextLine();
             }
-            player.loseLife();
             System.out.println("You have "+player.getLivesToString());
+            player.loseLife();
 
         }
         return false;

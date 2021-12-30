@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="QuizGame">
-    <output-path>$PROJECT_DIR$/out/artifacts/QuizGame</output-path>
+  <artifact type="jar" name="QuizGame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/QuizGame_jar</output-path>
     <root id="archive" name="QuizGame.jar">
       <element id="module-output" name="QuizGame" />
     </root>

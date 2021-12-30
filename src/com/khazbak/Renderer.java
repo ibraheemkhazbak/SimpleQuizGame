@@ -4,16 +4,25 @@ import com.khazbak.player.Player;
 import com.khazbak.question.Question;
 import org.w3c.dom.ls.LSOutput;
 
+import java.io.IOException;
+
 public class Renderer {
     public static void renderQuestion(Player player) {
         refreshScreen();
         Question question = player.getCurrentQuestion();
-        System.out.println(player.getName() + " Question number " + question.getId() + " and you have " + player.getLives() + " lives");
+        System.out.println(player.getName() + " Question number " + question.getId() + " and you have " + player.getLivesToString());
         System.out.println(question);
     }
 
     public static void refreshScreen() {
-        System.out.println("\033[H\033[2J ");
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void renderFailScreen(Player player) {
