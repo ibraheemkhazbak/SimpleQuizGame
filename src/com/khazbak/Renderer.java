@@ -1,6 +1,7 @@
 package com.khazbak;
 
 import com.khazbak.player.Player;
+import com.khazbak.player.PlayerDomain;
 import com.khazbak.question.Question;
 import org.w3c.dom.ls.LSOutput;
 
@@ -9,8 +10,8 @@ import java.io.IOException;
 public class Renderer {
     public static void renderQuestion(Player player) {
         refreshScreen();
-        Question question = player.getCurrentQuestion();
-        System.out.println(player.getName() + " Question number " + question.getId() + " and you have " + player.getLivesToString());
+        Question question = player.getPlayerDomain().getCurrentQuestion();
+        System.out.println(" Question number " + question.getId() + " and you have " + player.getLivesToString());
         System.out.println(question);
     }
 
@@ -38,6 +39,6 @@ public class Renderer {
     }
 
     public static void renderResult(Player player) {
-        System.out.println((int)(player.getQuestionsGotRight()*100 / player.getQuestions().size())+"%");
+        System.out.println((int)(player.getQuestionsGotRight()*100 / player.getPlayerDomain().getQuestions().size())+"%");
     }
 }
