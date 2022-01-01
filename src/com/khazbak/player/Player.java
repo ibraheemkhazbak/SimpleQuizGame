@@ -1,19 +1,12 @@
 package com.khazbak.player;
 
-import com.khazbak.Renderer;
-import com.khazbak.question.AnswerHandler;
-import com.khazbak.question.Question;
-import com.khazbak.question.QuestionGenerator;
-
-import java.util.ArrayList;
 
 public class Player {
-    private int ID;
-    private QuestionGenerator generator;
-    private int lives, maxLives;
-    private PlayerDomain playerDomain;
+    private final int ID;
+    private final int maxLives;
+    private final PlayerDomain playerDomain;
+    private int lives;
     private double questionsGotRight;
-    private AnswerHandler answerHandler;
 
     public Player(PlayerDomain playerDomain,int maxLives) {
         this.playerDomain=playerDomain;
@@ -54,11 +47,12 @@ public void addScorePoint(){
         livesString += " life";
     }else if(lives==0){
         livesString +=" lives and you lost a point";
+
     }
     return livesString;
     }
     public boolean hasFailed(){
-        return questionsGotRight/playerDomain.numberOfQuestions<0.5;
+        return (int)(questionsGotRight*100 / playerDomain.numberOfQuestions)<50;
     }
 
     public int getID() {

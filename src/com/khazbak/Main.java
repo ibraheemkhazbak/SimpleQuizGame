@@ -8,7 +8,7 @@ import java.security.spec.ECField;
 
 public class Main {
     public static void main(String[] args)  {
-        PlayerDomain playerDomain=new PlayerDomain(5);
+        PlayerDomain playerDomain=new PlayerDomain(1);
         Player player;
 
         if(args.length>0){

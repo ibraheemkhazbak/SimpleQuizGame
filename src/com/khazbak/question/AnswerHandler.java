@@ -1,5 +1,6 @@
 package com.khazbak.question;
 
+import com.khazbak.Delay;
 import com.khazbak.player.Player;
 import com.khazbak.player.PlayerDomain;
 
@@ -24,11 +25,12 @@ public class AnswerHandler {
 
             player.loseLife();
             System.out.println("You have "+player.getLivesToString());
+         Delay.wait(1000);
 
         }
         return false;
     }
-    public int getPlayerAnswer(){
+   public int getPlayerAnswer(){
         int answer;
         answer = scan.nextInt();
         scan.nextLine();
